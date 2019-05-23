@@ -67,11 +67,14 @@ int main(int argc, char const *argv[])
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
-	// An array of 3 vectors which represents 3 vertices
+	// An array of 6 vectors which represents 6 vertices
 	static const GLfloat g_vertex_buffer_data[] = {
-	   -1.0f, -1.0f, 0.0f,
-	   1.0f, -1.0f, 0.0f,
-	   0.0f,  1.0f, 0.0f,
+	   -0.2f, -0.9f, 0.0f,
+	   -0.2f, -0.7f, 0.0f,
+	    0.2f, -0.7f, 0.0f,
+	    0.2f, -0.7f, 0.0f,
+	    0.2f, -0.9f, 0.0f,
+	   -0.2f, -0.9f, 0.0f
 	};
 
 	// This will identify our vertex buffer
@@ -103,7 +106,7 @@ int main(int argc, char const *argv[])
 		   (void*)0            // array buffer offset
 		);
 		// Draw the triangle !
-		glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
+		glDrawArrays(GL_TRIANGLES, 0, 6); // Starting from vertex 0; 3 vertices total -> 1 triangle
 		glDisableVertexAttribArray(0);
 
 	    // Swap buffers
