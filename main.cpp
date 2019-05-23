@@ -10,6 +10,9 @@
 #include <glm/glm.hpp>
 using namespace glm;
 
+//Include load shader
+#include "loadShader.hpp"
+
 
 void error_callback(int error, const char *desc)
 {
@@ -50,6 +53,17 @@ int main(int argc, char const *argv[])
 	    return -1;
 	}
 
+	// Dark blue background
+	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+
+	GLuint VertexArrayID;
+	glGenVertexArrays(1, &VertexArrayID);
+	glBindVertexArray(VertexArrayID);
+
+	// Create and compile our GLSL program from the shaders
+	GLuint programID = LoadShaders( "SimpleVertexShader.vertexshader", "SimpleFragmentShader.fragmentshader" );
+
+
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
@@ -73,6 +87,9 @@ int main(int argc, char const *argv[])
 	do{
 	    // Clear the screen. It's not mentioned before Tutorial 02, but it can cause flickering, so it's there nonetheless.
 	    glClear( GL_COLOR_BUFFER_BIT );
+
+	    // Use our shader
+		glUseProgram(programID);
 
 	    // 1st attribute buffer : vertices
 		glEnableVertexAttribArray(0);
